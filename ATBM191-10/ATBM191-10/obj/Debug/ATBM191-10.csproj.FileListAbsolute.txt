@@ -1,6 +1,5 @@
 D:\Documents\Tài liệu\Học kì 8\ATBM HTTT\DA phân hệ 2\ATBM191-10\ATBM191-10\bin\Debug\ATBM191-10.exe.config
 D:\Documents\Tài liệu\Học kì 8\ATBM HTTT\DA phân hệ 2\ATBM191-10\ATBM191-10\bin\Debug\ATBM191-10.exe
-D:\Documents\Tài liệu\Học kì 8\ATBM HTTT\DA phân hệ 2\ATBM191-10\ATBM191-10\bin\Debug\ATBM191-10.pdb
 D:\Documents\Tài liệu\Học kì 8\ATBM HTTT\DA phân hệ 2\ATBM191-10\ATBM191-10\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
 D:\Documents\Tài liệu\Học kì 8\ATBM HTTT\DA phân hệ 2\ATBM191-10\ATBM191-10\bin\Debug\Oracle.ManagedDataAccess.dll
 D:\Documents\Tài liệu\Học kì 8\ATBM HTTT\DA phân hệ 2\ATBM191-10\ATBM191-10\bin\Debug\System.Buffers.dll
@@ -20,7 +19,6 @@ D:\Documents\Tài liệu\Học kì 8\ATBM HTTT\DA phân hệ 2\ATBM191-10\ATBM19
 D:\Documents\Tài liệu\Học kì 8\ATBM HTTT\DA phân hệ 2\ATBM191-10\ATBM191-10\bin\Debug\System.Text.Json.xml
 D:\Documents\Tài liệu\Học kì 8\ATBM HTTT\DA phân hệ 2\ATBM191-10\ATBM191-10\bin\Debug\System.Threading.Tasks.Extensions.xml
 D:\Documents\Tài liệu\Học kì 8\ATBM HTTT\DA phân hệ 2\ATBM191-10\ATBM191-10\bin\Debug\System.ValueTuple.xml
-D:\Documents\Tài liệu\Học kì 8\ATBM HTTT\DA phân hệ 2\ATBM191-10\ATBM191-10\obj\Debug\ATBM191-10.csprojAssemblyReference.cache
 D:\Documents\Tài liệu\Học kì 8\ATBM HTTT\DA phân hệ 2\ATBM191-10\ATBM191-10\obj\Debug\ATBM191_10.f_BenhNhan.resources
 D:\Documents\Tài liệu\Học kì 8\ATBM HTTT\DA phân hệ 2\ATBM191-10\ATBM191-10\obj\Debug\ATBM191_10.f_CoSoYTe.resources
 D:\Documents\Tài liệu\Học kì 8\ATBM HTTT\DA phân hệ 2\ATBM191-10\ATBM191-10\obj\Debug\ATBM191_10.f_DangNhap.resources
@@ -33,3 +31,39 @@ D:\Documents\Tài liệu\Học kì 8\ATBM HTTT\DA phân hệ 2\ATBM191-10\ATBM19
 D:\Documents\Tài liệu\Học kì 8\ATBM HTTT\DA phân hệ 2\ATBM191-10\ATBM191-10\obj\Debug\ATBM191-10.csproj.CopyComplete
 D:\Documents\Tài liệu\Học kì 8\ATBM HTTT\DA phân hệ 2\ATBM191-10\ATBM191-10\obj\Debug\ATBM191-10.exe
 D:\Documents\Tài liệu\Học kì 8\ATBM HTTT\DA phân hệ 2\ATBM191-10\ATBM191-10\obj\Debug\ATBM191-10.pdb
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\bin\Debug\ATBM191-10.exe.config
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\bin\Debug\ATBM191-10.exe
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\bin\Debug\ATBM191-10.pdb
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\bin\Debug\System.Buffers.dll
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\bin\Debug\System.Memory.dll
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\bin\Debug\System.Text.Encodings.Web.dll
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\bin\Debug\System.Text.Json.dll
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\bin\Debug\System.ValueTuple.dll
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\bin\Debug\System.Buffers.xml
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\bin\Debug\System.Memory.xml
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\bin\Debug\System.Text.Encodings.Web.xml
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\bin\Debug\System.Text.Json.xml
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\bin\Debug\System.ValueTuple.xml
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\obj\Debug\ATBM191-10.csprojAssemblyReference.cache
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\obj\Debug\ATBM191_10.f_BenhNhan.resources
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\obj\Debug\ATBM191_10.f_CoSoYTe.resources
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\obj\Debug\ATBM191_10.f_DangNhap.resources
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\obj\Debug\ATBM191_10.f_NghienCuu.resources
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\obj\Debug\ATBM191_10.Properties.Resources.resources
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\obj\Debug\ATBM191_10.f_ThanhTra.resources
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\obj\Debug\ATBM191_10.f_YSiBacSi.resources
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\obj\Debug\ATBM191-10.csproj.GenerateResource.cache
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\obj\Debug\ATBM191-10.csproj.CoreCompileInputs.cache
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\obj\Debug\ATBM191-10.csproj.CopyComplete
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\obj\Debug\ATBM191-10.exe
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\obj\Debug\ATBM191-10.pdb
+C:\Users\DELL\Desktop\ATBM191-10\ATBM191-10\obj\Debug\ATBM191_10.f_HSBA_DV.resources

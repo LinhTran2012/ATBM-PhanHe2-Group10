@@ -22,6 +22,7 @@ namespace ATBM191_10
             InitializeComponent();
             this.con = connect;
             this.HienThiThongTin();
+    
         }
 
         private void HienThiThongTin()
@@ -33,6 +34,8 @@ namespace ATBM191_10
             DataTable dt = new DataTable();
             dt.Load(dr);
             dr.Close();
+
+            lb_name.Text = dt.Rows[0][1].ToString();
             txt_manv.Text = dt.Rows[0][0].ToString();
             txt_hoten.Text = dt.Rows[0][1].ToString();
             cb_phai.Text = dt.Rows[0][2].ToString();
@@ -45,26 +48,100 @@ namespace ATBM191_10
             cb_chuyenkhoa.Text = dt.Rows[0][9].ToString();
         }
 
-        private void btn_capnhatthongtin_Click(object sender, EventArgs e)
+        private void HienThiHSBA()
         {
             OracleCommand cmd = con.CreateCommand();
-            cmd.CommandText = "UPDATE QLYCSYT.V_NHANVIEN_THONGTINCANHAN " +
-                               "SET HOTEN='" + txt_hoten.Text + "' , PHAI='" + cb_phai.Text + "' , NGAYSINH=TO_DATE('" + txt_ngaysinh.Text + "','dd/mm/yyyy')" +
-                               " , CMND ='" + txt_cmnd.Text + "' , QUEQUAN='" + txt_quequan.Text + "' , SODT='" + txt_sdt.Text +
-                               "' , CSYT ='" + cb_csyt.Text + "' , VAITRO='" + cb_vaitro.Text + "' , CHUYENKHOA='" + cb_chuyenkhoa.Text +"'";
+            cmd.CommandText = "SELECT * FROM QLYCSYT.V_NGHIENCUU_HSBA";
             cmd.CommandType = CommandType.Text;
+            OracleDataReader dr = cmd.ExecuteReader();
+            DataTable dt = new DataTable();
+            dt.Load(dr);
+            dr.Close();
 
-            try
-            {
-                int i = cmd.ExecuteNonQuery();
-                if (i == 1)
-                {
-                    MessageBox.Show("Cập nhật thành công");
-                }
-            }
-            catch (Exception exp) { MessageBox.Show(exp.Message); }
-
+            dgv_hsba.DataSource = dt;
         }
 
+        private void HienThiHSBA_DV()
+        {
+            OracleCommand cmd = con.CreateCommand();
+            cmd.CommandText = "SELECT * FROM QLYCSYT.V_NGHIENCUU_HSBA_DV";
+            cmd.CommandType = CommandType.Text;
+            OracleDataReader dr = cmd.ExecuteReader();
+            DataTable dt = new DataTable();
+            dt.Load(dr);
+            dr.Close();
+
+            dgv_hsbadv.DataSource = dt;
+        }
+
+        private void btn_capnhatthongtin_Click(object sender, EventArgs e)
+        {
+            if (cb_vaitro.Text == "Thanh tra" || cb_vaitro.Text == "Co so y te" || cb_chuyenkhoa.Text != "")
+            {
+                OracleCommand cmd = con.CreateCommand();
+                cmd.CommandText = "UPDATE QLYCSYT.V_NHANVIEN_THONGTINCANHAN " +
+                                   "SET HOTEN='" + txt_hoten.Text + "' , PHAI='" + cb_phai.Text + "' , NGAYSINH=TO_DATE('" + txt_ngaysinh.Text + "','dd/mm/yyyy')" +
+                                   " , CMND ='" + txt_cmnd.Text + "' , QUEQUAN='" + txt_quequan.Text + "' , SODT='" + txt_sdt.Text +
+                                   "' , CSYT ='" + cb_csyt.Text + "' , VAITRO='" + cb_vaitro.Text + "' , CHUYENKHOA='" + cb_chuyenkhoa.Text + "'";
+                cmd.CommandType = CommandType.Text;
+
+                try
+                {
+                    int i = cmd.ExecuteNonQuery();
+                    if (i == 1)
+                    {
+                        MessageBox.Show("Cập nhật thành công");
+                    }
+                }
+                catch (Exception exp) { MessageBox.Show(exp.Message); }
+            }
+            else
+                MessageBox.Show("Chuyên khoa không được bỏ trống");
+        }
+
+        private void cb_vaitro_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cb_vaitro.Text =="Thanh tra" || cb_vaitro.Text == "Co so y te")
+            {
+                cb_chuyenkhoa.Text = "";
+                cb_chuyenkhoa.Enabled = false;
+            }
+            else
+                cb_chuyenkhoa.Enabled = true;
+        }
+
+        private void tabcontrol1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabcontrol1.SelectedIndex == 0)
+                this.HienThiThongTin();
+            else if (tabcontrol1.SelectedIndex == 1)
+                this.HienThiHSBA();
+            else
+                this.HienThiHSBA_DV();
+        }
+
+        private void btn_dangxuat_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            f_DangNhap dn = new f_DangNhap();
+            dn.Show();
+        }
+
+        private void dgv_hsba_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex == -1) return;
+
+            OracleCommand cmd = con.CreateCommand();
+            cmd.CommandText = "SELECT * FROM QLYCSYT.V_NGHIENCUU_HSBA_DV WHERE MAHSBA ='" + this.dgv_hsba.Rows[e.RowIndex].Cells[0].Value.ToString() + "'";
+            cmd.CommandType = CommandType.Text;
+            OracleDataReader dr = cmd.ExecuteReader();
+            DataTable dt = new DataTable();
+            dt.Load(dr);
+            dr.Close();
+
+            f_HSBA_DV hsbadv = new f_HSBA_DV(dt);
+            hsbadv.ShowDialog();
+
+        }
     }
 }

@@ -66,6 +66,7 @@ namespace ATBM191_10
             this.btn_thoat.TabIndex = 3;
             this.btn_thoat.Text = "Thoát";
             this.btn_thoat.UseVisualStyleBackColor = true;
+            this.btn_thoat.Click += new System.EventHandler(this.btn_thoat_Click);
             // 
             // btn_dangnhap
             // 
@@ -169,6 +170,7 @@ namespace ATBM191_10
             this.Controls.Add(this.panel1);
             this.Name = "f_DangNhap";
             this.Text = "Đăng nhập";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.f_DangNhap_FormClosed);
             this.panelLoginBtn.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

@@ -43,12 +43,11 @@ namespace ATBM191_10
                 OracleCommand cmd = con.CreateCommand();
                 cmd.CommandText = "SELECT VAITRO FROM QLYCSYT.NHANVIEN WHERE MANV = '" + manv + "'";
                 cmd.CommandType = CommandType.Text;
-
                 OracleDataReader dr = cmd.ExecuteReader();
                 DataTable dt = new DataTable();
                 dt.Load(dr);
                 dr.Close();
-
+                
                 return dt.Rows[0][0].ToString();
             }
             catch (Exception exp) { return null; }
@@ -96,6 +95,16 @@ namespace ATBM191_10
             }
             else
                 MessageBox.Show("Tên đăng nhập hoặc mật khẩu không đúng");
+        }
+
+        private void f_DangNhap_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btn_thoat_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

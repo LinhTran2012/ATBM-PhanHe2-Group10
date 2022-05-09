@@ -32,7 +32,7 @@ namespace ATBM191_10
             this.header_panel = new System.Windows.Forms.Panel();
             this.btn_dangxuat = new System.Windows.Forms.Button();
             this.lb_name = new System.Windows.Forms.Label();
-            this.dgv_hsbadv = new System.Windows.Forms.TabControl();
+            this.tabcontrol1 = new System.Windows.Forms.TabControl();
             this.tab_thongtincanhan = new System.Windows.Forms.TabPage();
             this.cb_chuyenkhoa = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -59,15 +59,15 @@ namespace ATBM191_10
             this.tab_hsba = new System.Windows.Forms.TabPage();
             this.dgv_hsba = new System.Windows.Forms.DataGridView();
             this.tab_hsbadv = new System.Windows.Forms.TabPage();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dgv_hsbadv = new System.Windows.Forms.DataGridView();
             this.header_panel.SuspendLayout();
-            this.dgv_hsbadv.SuspendLayout();
+            this.tabcontrol1.SuspendLayout();
             this.tab_thongtincanhan.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tab_hsba.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_hsba)).BeginInit();
             this.tab_hsbadv.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_hsbadv)).BeginInit();
             this.SuspendLayout();
             // 
             // header_panel
@@ -94,13 +94,14 @@ namespace ATBM191_10
             this.btn_dangxuat.TabIndex = 1;
             this.btn_dangxuat.Text = "Đăng xuất";
             this.btn_dangxuat.UseVisualStyleBackColor = true;
+            this.btn_dangxuat.Click += new System.EventHandler(this.btn_dangxuat_Click);
             // 
             // lb_name
             // 
             this.lb_name.AutoSize = true;
             this.lb_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_name.ForeColor = System.Drawing.Color.White;
-            this.lb_name.Location = new System.Drawing.Point(572, 5);
+            this.lb_name.Location = new System.Drawing.Point(48, 8);
             this.lb_name.Margin = new System.Windows.Forms.Padding(70, 0, 3, 0);
             this.lb_name.Name = "lb_name";
             this.lb_name.Size = new System.Drawing.Size(152, 25);
@@ -108,16 +109,17 @@ namespace ATBM191_10
             this.lb_name.Text = "Nguyễn Văn A";
             this.lb_name.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // dgv_hsbadv
+            // tabcontrol1
             // 
-            this.dgv_hsbadv.Controls.Add(this.tab_thongtincanhan);
-            this.dgv_hsbadv.Controls.Add(this.tab_hsba);
-            this.dgv_hsbadv.Controls.Add(this.tab_hsbadv);
-            this.dgv_hsbadv.Location = new System.Drawing.Point(12, 40);
-            this.dgv_hsbadv.Name = "dgv_hsbadv";
-            this.dgv_hsbadv.SelectedIndex = 0;
-            this.dgv_hsbadv.Size = new System.Drawing.Size(810, 454);
-            this.dgv_hsbadv.TabIndex = 8;
+            this.tabcontrol1.Controls.Add(this.tab_thongtincanhan);
+            this.tabcontrol1.Controls.Add(this.tab_hsba);
+            this.tabcontrol1.Controls.Add(this.tab_hsbadv);
+            this.tabcontrol1.Location = new System.Drawing.Point(12, 40);
+            this.tabcontrol1.Name = "tabcontrol1";
+            this.tabcontrol1.SelectedIndex = 0;
+            this.tabcontrol1.Size = new System.Drawing.Size(810, 454);
+            this.tabcontrol1.TabIndex = 8;
+            this.tabcontrol1.SelectedIndexChanged += new System.EventHandler(this.tabcontrol1_SelectedIndexChanged);
             // 
             // tab_thongtincanhan
             // 
@@ -181,6 +183,7 @@ namespace ATBM191_10
             this.cb_vaitro.Name = "cb_vaitro";
             this.cb_vaitro.Size = new System.Drawing.Size(200, 24);
             this.cb_vaitro.TabIndex = 21;
+            this.cb_vaitro.SelectedValueChanged += new System.EventHandler(this.cb_vaitro_SelectedValueChanged);
             // 
             // cb_csyt
             // 
@@ -374,17 +377,19 @@ namespace ATBM191_10
             // 
             // dgv_hsba
             // 
+            this.dgv_hsba.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgv_hsba.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_hsba.Location = new System.Drawing.Point(40, 36);
+            this.dgv_hsba.Location = new System.Drawing.Point(21, 36);
             this.dgv_hsba.Name = "dgv_hsba";
             this.dgv_hsba.RowHeadersWidth = 51;
             this.dgv_hsba.RowTemplate.Height = 24;
-            this.dgv_hsba.Size = new System.Drawing.Size(718, 354);
+            this.dgv_hsba.Size = new System.Drawing.Size(751, 354);
             this.dgv_hsba.TabIndex = 0;
+            this.dgv_hsba.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_hsba_CellClick);
             // 
             // tab_hsbadv
             // 
-            this.tab_hsbadv.Controls.Add(this.dataGridView2);
+            this.tab_hsbadv.Controls.Add(this.dgv_hsbadv);
             this.tab_hsbadv.Location = new System.Drawing.Point(4, 25);
             this.tab_hsbadv.Name = "tab_hsbadv";
             this.tab_hsbadv.Size = new System.Drawing.Size(802, 425);
@@ -392,15 +397,16 @@ namespace ATBM191_10
             this.tab_hsbadv.Text = "Hồ sơ bệnh án - dịch vụ";
             this.tab_hsbadv.UseVisualStyleBackColor = true;
             // 
-            // dataGridView2
+            // dgv_hsbadv
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(37, 37);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(719, 356);
-            this.dataGridView2.TabIndex = 0;
+            this.dgv_hsbadv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv_hsbadv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_hsbadv.Location = new System.Drawing.Point(37, 37);
+            this.dgv_hsbadv.Name = "dgv_hsbadv";
+            this.dgv_hsbadv.RowHeadersWidth = 51;
+            this.dgv_hsbadv.RowTemplate.Height = 24;
+            this.dgv_hsbadv.Size = new System.Drawing.Size(719, 356);
+            this.dgv_hsbadv.TabIndex = 0;
             // 
             // f_NghienCuu
             // 
@@ -408,12 +414,12 @@ namespace ATBM191_10
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(832, 503);
             this.Controls.Add(this.header_panel);
-            this.Controls.Add(this.dgv_hsbadv);
+            this.Controls.Add(this.tabcontrol1);
             this.Name = "f_NghienCuu";
             this.Text = "Nghiên cứu";
             this.header_panel.ResumeLayout(false);
             this.header_panel.PerformLayout();
-            this.dgv_hsbadv.ResumeLayout(false);
+            this.tabcontrol1.ResumeLayout(false);
             this.tab_thongtincanhan.ResumeLayout(false);
             this.tab_thongtincanhan.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -421,7 +427,7 @@ namespace ATBM191_10
             this.tab_hsba.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_hsba)).EndInit();
             this.tab_hsbadv.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_hsbadv)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -431,7 +437,7 @@ namespace ATBM191_10
         private System.Windows.Forms.Panel header_panel;
         private System.Windows.Forms.Button btn_dangxuat;
         private System.Windows.Forms.Label lb_name;
-        private System.Windows.Forms.TabControl dgv_hsbadv;
+        private System.Windows.Forms.TabControl tabcontrol1;
         private System.Windows.Forms.TabPage tab_thongtincanhan;
         private System.Windows.Forms.TabPage tab_hsba;
         private System.Windows.Forms.TabPage tab_hsbadv;
@@ -457,7 +463,7 @@ namespace ATBM191_10
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btn_capnhatthongtin;
         private System.Windows.Forms.DataGridView dgv_hsba;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dgv_hsbadv;
         private System.Windows.Forms.TextBox txt_ngaysinh;
     }
 }

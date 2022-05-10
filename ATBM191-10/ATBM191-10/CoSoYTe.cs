@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.Types;
 using System.Configuration;
-
 
 namespace ATBM191_10
 {
@@ -47,6 +46,32 @@ namespace ATBM191_10
             cb_chuyenkhoa.Text = dt.Rows[0][9].ToString();
         }
 
+        private void HienThiHSBA()
+        {
+            OracleCommand cmd = con.CreateCommand();
+            cmd.CommandText = "SELECT * FROM QLYCSYT.V_CSYT_HSBA";
+            cmd.CommandType = CommandType.Text;
+            OracleDataReader dr = cmd.ExecuteReader();
+            DataTable dt = new DataTable();
+            dt.Load(dr);
+            dr.Close();
+
+            dgv_hsba.DataSource = dt;
+        }
+
+        private void HienThiHSBA_DV()
+        {
+            OracleCommand cmd = con.CreateCommand();
+            cmd.CommandText = "SELECT * FROM QLYCSYT.V_HSBA_HSBA_DV";
+            cmd.CommandType = CommandType.Text;
+            OracleDataReader dr = cmd.ExecuteReader();
+            DataTable dt = new DataTable();
+            dt.Load(dr);
+            dr.Close();
+
+            dgv_hsbadv.DataSource = dt;
+        }
+
         private void btn_capnhatthongtin_Click(object sender, EventArgs e)
         {
             if (cb_vaitro.Text == "Thanh tra" || cb_vaitro.Text == "Co so y te" || cb_chuyenkhoa.Text != "")
@@ -70,6 +95,60 @@ namespace ATBM191_10
             }
             else
                 MessageBox.Show("Chuyên khoa không được bỏ trống");
+        }
+
+        private void btn_dangxuat_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            f_DangNhap dn = new f_DangNhap();
+            dn.Show();
+        }
+
+        private void cb_vaitro_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cb_vaitro.Text == "Thanh tra" || cb_vaitro.Text == "Co so y te")
+            {
+                cb_chuyenkhoa.Text = "";
+                cb_chuyenkhoa.Enabled = false;
+            }
+            else
+                cb_chuyenkhoa.Enabled = true;
+        }
+
+        private void tabcontrol1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabcontrol1.SelectedIndex == 0)
+                this.HienThiThongTin();
+            else if (tabcontrol1.SelectedIndex == 1)
+                this.HienThiHSBA();
+            else 
+                this.HienThiHSBA_DV();
+        }
+
+        private void dgv_hsba_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex == -1) return;
+
+            OracleCommand cmd = con.CreateCommand();
+            cmd.CommandText = "SELECT * FROM QLYCSYT.V_HSBA_HSBA_DV WHERE MAHSBA ='" + this.dgv_hsba.Rows[e.RowIndex].Cells[0].Value.ToString() + "'";
+            cmd.CommandType = CommandType.Text;
+            OracleDataReader dr = cmd.ExecuteReader();
+            DataTable dt = new DataTable();
+            dt.Load(dr);
+            dr.Close();
+
+            f_HSBA_DV hsbadv = new f_HSBA_DV(dt);
+            hsbadv.ShowDialog();
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tab_thongtincanhan_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

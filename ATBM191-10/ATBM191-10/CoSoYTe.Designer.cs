@@ -1,4 +1,4 @@
-﻿
+
 namespace ATBM191_10
 {
     partial class f_CoSoYTe
@@ -55,15 +55,19 @@ namespace ATBM191_10
             this.tabcontrol1 = new System.Windows.Forms.TabControl();
             this.tab_thongtincanhan = new System.Windows.Forms.TabPage();
             this.txt_hoten = new System.Windows.Forms.TextBox();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btn_dangxuat = new System.Windows.Forms.Button();
             this.lb_name = new System.Windows.Forms.Label();
             this.header_panel = new System.Windows.Forms.Panel();
+            this.dgv_hsbadv = new System.Windows.Forms.DataGridView();
             this.tab_hsba.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_hsba)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tabcontrol1.SuspendLayout();
             this.tab_thongtincanhan.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.header_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_hsbadv)).BeginInit();
             this.SuspendLayout();
             // 
             // txt_ngaysinh
@@ -129,6 +133,7 @@ namespace ATBM191_10
             this.cb_vaitro.Name = "cb_vaitro";
             this.cb_vaitro.Size = new System.Drawing.Size(200, 24);
             this.cb_vaitro.TabIndex = 21;
+            this.cb_vaitro.SelectedIndexChanged += new System.EventHandler(this.cb_vaitro_SelectedIndexChanged);
             // 
             // cb_csyt
             // 
@@ -295,11 +300,13 @@ namespace ATBM191_10
             this.groupBox1.Size = new System.Drawing.Size(552, 395);
             this.groupBox1.TabIndex = 24;
             this.groupBox1.TabStop = false;
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // tabcontrol1
             // 
             this.tabcontrol1.Controls.Add(this.tab_thongtincanhan);
             this.tabcontrol1.Controls.Add(this.tab_hsba);
+            this.tabcontrol1.Controls.Add(this.tabPage1);
             this.tabcontrol1.Location = new System.Drawing.Point(12, 45);
             this.tabcontrol1.Name = "tabcontrol1";
             this.tabcontrol1.SelectedIndex = 0;
@@ -332,6 +339,7 @@ namespace ATBM191_10
             this.tab_thongtincanhan.TabIndex = 0;
             this.tab_thongtincanhan.Text = "Thông tin cá nhân";
             this.tab_thongtincanhan.UseVisualStyleBackColor = true;
+            this.tab_thongtincanhan.Click += new System.EventHandler(this.tab_thongtincanhan_Click);
             // 
             // txt_hoten
             // 
@@ -339,6 +347,17 @@ namespace ATBM191_10
             this.txt_hoten.Name = "txt_hoten";
             this.txt_hoten.Size = new System.Drawing.Size(200, 22);
             this.txt_hoten.TabIndex = 2;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.dgv_hsbadv);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(802, 425);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "Hồ sơ bệnh án - Dịch vụ";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // btn_dangxuat
             // 
@@ -350,6 +369,7 @@ namespace ATBM191_10
             this.btn_dangxuat.TabIndex = 1;
             this.btn_dangxuat.Text = "Đăng xuất";
             this.btn_dangxuat.UseVisualStyleBackColor = true;
+            this.btn_dangxuat.Click += new System.EventHandler(this.btn_dangxuat_Click_1);
             // 
             // lb_name
             // 
@@ -378,6 +398,16 @@ namespace ATBM191_10
             this.header_panel.Size = new System.Drawing.Size(833, 40);
             this.header_panel.TabIndex = 9;
             // 
+            // dgv_hsbadv
+            // 
+            this.dgv_hsbadv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_hsbadv.Location = new System.Drawing.Point(32, 19);
+            this.dgv_hsbadv.Name = "dgv_hsbadv";
+            this.dgv_hsbadv.RowHeadersWidth = 51;
+            this.dgv_hsbadv.RowTemplate.Height = 24;
+            this.dgv_hsbadv.Size = new System.Drawing.Size(743, 389);
+            this.dgv_hsbadv.TabIndex = 0;
+            // 
             // f_CoSoYTe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -394,8 +424,10 @@ namespace ATBM191_10
             this.tabcontrol1.ResumeLayout(false);
             this.tab_thongtincanhan.ResumeLayout(false);
             this.tab_thongtincanhan.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
             this.header_panel.ResumeLayout(false);
             this.header_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_hsbadv)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -431,5 +463,7 @@ namespace ATBM191_10
         private System.Windows.Forms.Button btn_dangxuat;
         private System.Windows.Forms.Label lb_name;
         private System.Windows.Forms.Panel header_panel;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.DataGridView dgv_hsbadv;
     }
 }

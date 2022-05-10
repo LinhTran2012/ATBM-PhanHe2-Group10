@@ -57,14 +57,14 @@ namespace ATBM191_10
             this.tabcontrol1 = new System.Windows.Forms.TabControl();
             this.tab_thongtincanhan = new System.Windows.Forms.TabPage();
             this.txt_hoten = new System.Windows.Forms.TextBox();
+            this.tab_benhnhan = new System.Windows.Forms.TabPage();
+            this.label11 = new System.Windows.Forms.Label();
+            this.btn_tim = new System.Windows.Forms.Button();
+            this.txt_tim = new System.Windows.Forms.TextBox();
+            this.dgv_benhnhan = new System.Windows.Forms.DataGridView();
             this.btn_dangxuat = new System.Windows.Forms.Button();
             this.lb_name = new System.Windows.Forms.Label();
             this.header_panel = new System.Windows.Forms.Panel();
-            this.tab_benhnhan = new System.Windows.Forms.TabPage();
-            this.dgv_benhnhan = new System.Windows.Forms.DataGridView();
-            this.txt_tim = new System.Windows.Forms.TextBox();
-            this.btn_tim = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
             this.tab_hsba.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_hsba)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_hsbadv)).BeginInit();
@@ -72,9 +72,9 @@ namespace ATBM191_10
             this.tab_hsbadv.SuspendLayout();
             this.tabcontrol1.SuspendLayout();
             this.tab_thongtincanhan.SuspendLayout();
-            this.header_panel.SuspendLayout();
             this.tab_benhnhan.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_benhnhan)).BeginInit();
+            this.header_panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // txt_ngaysinh
@@ -377,6 +377,58 @@ namespace ATBM191_10
             this.txt_hoten.Size = new System.Drawing.Size(200, 22);
             this.txt_hoten.TabIndex = 2;
             // 
+            // tab_benhnhan
+            // 
+            this.tab_benhnhan.Controls.Add(this.label11);
+            this.tab_benhnhan.Controls.Add(this.btn_tim);
+            this.tab_benhnhan.Controls.Add(this.txt_tim);
+            this.tab_benhnhan.Controls.Add(this.dgv_benhnhan);
+            this.tab_benhnhan.Location = new System.Drawing.Point(4, 25);
+            this.tab_benhnhan.Name = "tab_benhnhan";
+            this.tab_benhnhan.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_benhnhan.Size = new System.Drawing.Size(802, 425);
+            this.tab_benhnhan.TabIndex = 3;
+            this.tab_benhnhan.Text = "Bệnh nhân";
+            this.tab_benhnhan.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(408, 16);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(128, 17);
+            this.label11.TabIndex = 3;
+            this.label11.Text = "Nhập MaBN/CMND";
+            // 
+            // btn_tim
+            // 
+            this.btn_tim.AutoSize = true;
+            this.btn_tim.Location = new System.Drawing.Point(706, 13);
+            this.btn_tim.Name = "btn_tim";
+            this.btn_tim.Size = new System.Drawing.Size(43, 27);
+            this.btn_tim.TabIndex = 2;
+            this.btn_tim.Text = "Tìm";
+            this.btn_tim.UseVisualStyleBackColor = true;
+            this.btn_tim.Click += new System.EventHandler(this.btn_tim_Click);
+            // 
+            // txt_tim
+            // 
+            this.txt_tim.Location = new System.Drawing.Point(556, 16);
+            this.txt_tim.Name = "txt_tim";
+            this.txt_tim.Size = new System.Drawing.Size(135, 22);
+            this.txt_tim.TabIndex = 1;
+            // 
+            // dgv_benhnhan
+            // 
+            this.dgv_benhnhan.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgv_benhnhan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_benhnhan.Location = new System.Drawing.Point(37, 52);
+            this.dgv_benhnhan.Name = "dgv_benhnhan";
+            this.dgv_benhnhan.RowHeadersWidth = 51;
+            this.dgv_benhnhan.RowTemplate.Height = 24;
+            this.dgv_benhnhan.Size = new System.Drawing.Size(712, 344);
+            this.dgv_benhnhan.TabIndex = 0;
+            // 
             // btn_dangxuat
             // 
             this.btn_dangxuat.AutoSize = true;
@@ -416,58 +468,6 @@ namespace ATBM191_10
             this.header_panel.Size = new System.Drawing.Size(833, 40);
             this.header_panel.TabIndex = 9;
             // 
-            // tab_benhnhan
-            // 
-            this.tab_benhnhan.Controls.Add(this.label11);
-            this.tab_benhnhan.Controls.Add(this.btn_tim);
-            this.tab_benhnhan.Controls.Add(this.txt_tim);
-            this.tab_benhnhan.Controls.Add(this.dgv_benhnhan);
-            this.tab_benhnhan.Location = new System.Drawing.Point(4, 25);
-            this.tab_benhnhan.Name = "tab_benhnhan";
-            this.tab_benhnhan.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_benhnhan.Size = new System.Drawing.Size(802, 425);
-            this.tab_benhnhan.TabIndex = 3;
-            this.tab_benhnhan.Text = "Bệnh nhân";
-            this.tab_benhnhan.UseVisualStyleBackColor = true;
-            // 
-            // dgv_benhnhan
-            // 
-            this.dgv_benhnhan.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgv_benhnhan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_benhnhan.Location = new System.Drawing.Point(37, 52);
-            this.dgv_benhnhan.Name = "dgv_benhnhan";
-            this.dgv_benhnhan.RowHeadersWidth = 51;
-            this.dgv_benhnhan.RowTemplate.Height = 24;
-            this.dgv_benhnhan.Size = new System.Drawing.Size(712, 344);
-            this.dgv_benhnhan.TabIndex = 0;
-            // 
-            // txt_tim
-            // 
-            this.txt_tim.Location = new System.Drawing.Point(556, 16);
-            this.txt_tim.Name = "txt_tim";
-            this.txt_tim.Size = new System.Drawing.Size(135, 22);
-            this.txt_tim.TabIndex = 1;
-            // 
-            // btn_tim
-            // 
-            this.btn_tim.AutoSize = true;
-            this.btn_tim.Location = new System.Drawing.Point(706, 13);
-            this.btn_tim.Name = "btn_tim";
-            this.btn_tim.Size = new System.Drawing.Size(43, 27);
-            this.btn_tim.TabIndex = 2;
-            this.btn_tim.Text = "Tìm";
-            this.btn_tim.UseVisualStyleBackColor = true;
-            this.btn_tim.Click += new System.EventHandler(this.btn_tim_Click);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(408, 16);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(128, 17);
-            this.label11.TabIndex = 3;
-            this.label11.Text = "Nhập MaBN/CMND";
-            // 
             // f_YSiBacSi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -486,11 +486,11 @@ namespace ATBM191_10
             this.tabcontrol1.ResumeLayout(false);
             this.tab_thongtincanhan.ResumeLayout(false);
             this.tab_thongtincanhan.PerformLayout();
-            this.header_panel.ResumeLayout(false);
-            this.header_panel.PerformLayout();
             this.tab_benhnhan.ResumeLayout(false);
             this.tab_benhnhan.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_benhnhan)).EndInit();
+            this.header_panel.ResumeLayout(false);
+            this.header_panel.PerformLayout();
             this.ResumeLayout(false);
 
         }

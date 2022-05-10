@@ -1,4 +1,5 @@
 ﻿
+
 namespace ATBM191_10
 {
     partial class f_ThanhTra
@@ -34,9 +35,17 @@ namespace ATBM191_10
             this.lb_name = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tab_thongtincanhan = new System.Windows.Forms.TabPage();
+            this.dgv_info = new System.Windows.Forms.DataGridView();
             this.tab_docdulieu = new System.Windows.Forms.TabPage();
+            this.cb_chon = new System.Windows.Forms.ComboBox();
+            this.btn_chon = new System.Windows.Forms.Button();
+            this.dgv_doc = new System.Windows.Forms.DataGridView();
             this.header_panel.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.tab_thongtincanhan.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_info)).BeginInit();
+            this.tab_docdulieu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_doc)).BeginInit();
             this.SuspendLayout();
             // 
             // header_panel
@@ -63,6 +72,7 @@ namespace ATBM191_10
             this.btn_dangxuat.TabIndex = 1;
             this.btn_dangxuat.Text = "Đăng xuất";
             this.btn_dangxuat.UseVisualStyleBackColor = true;
+            this.btn_dangxuat.Click += new System.EventHandler(this.btn_dangxuat_Click);
             // 
             // lb_name
             // 
@@ -86,9 +96,11 @@ namespace ATBM191_10
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(810, 454);
             this.tabControl1.TabIndex = 6;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tab_thongtincanhan
             // 
+            this.tab_thongtincanhan.Controls.Add(this.dgv_info);
             this.tab_thongtincanhan.Location = new System.Drawing.Point(4, 25);
             this.tab_thongtincanhan.Name = "tab_thongtincanhan";
             this.tab_thongtincanhan.Padding = new System.Windows.Forms.Padding(3);
@@ -97,15 +109,62 @@ namespace ATBM191_10
             this.tab_thongtincanhan.Text = "Thông tin cá nhân";
             this.tab_thongtincanhan.UseVisualStyleBackColor = true;
             // 
+            // dgv_info
+            // 
+            this.dgv_info.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_info.Location = new System.Drawing.Point(6, 6);
+            this.dgv_info.Name = "dgv_info";
+            this.dgv_info.RowHeadersWidth = 51;
+            this.dgv_info.RowTemplate.Height = 24;
+            this.dgv_info.Size = new System.Drawing.Size(790, 413);
+            this.dgv_info.TabIndex = 0;
+            // 
             // tab_docdulieu
             // 
+            this.tab_docdulieu.Controls.Add(this.dgv_doc);
+            this.tab_docdulieu.Controls.Add(this.btn_chon);
+            this.tab_docdulieu.Controls.Add(this.cb_chon);
             this.tab_docdulieu.Location = new System.Drawing.Point(4, 25);
             this.tab_docdulieu.Name = "tab_docdulieu";
             this.tab_docdulieu.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_docdulieu.Size = new System.Drawing.Size(822, 434);
+            this.tab_docdulieu.Size = new System.Drawing.Size(802, 425);
             this.tab_docdulieu.TabIndex = 1;
             this.tab_docdulieu.Text = "Đọc dữ liệu";
             this.tab_docdulieu.UseVisualStyleBackColor = true;
+            // 
+            // cb_chon
+            // 
+            this.cb_chon.FormattingEnabled = true;
+            this.cb_chon.Items.AddRange(new object[] {
+            "Nhân Viên",
+            "Bệnh Nhân",
+            "HSBA",
+            "HSBA_DV",
+            "CSYT"});
+            this.cb_chon.Location = new System.Drawing.Point(6, 6);
+            this.cb_chon.Name = "cb_chon";
+            this.cb_chon.Size = new System.Drawing.Size(220, 24);
+            this.cb_chon.TabIndex = 0;
+            // 
+            // btn_chon
+            // 
+            this.btn_chon.Location = new System.Drawing.Point(246, 6);
+            this.btn_chon.Name = "btn_chon";
+            this.btn_chon.Size = new System.Drawing.Size(75, 23);
+            this.btn_chon.TabIndex = 1;
+            this.btn_chon.Text = "Chọn";
+            this.btn_chon.UseVisualStyleBackColor = true;
+            this.btn_chon.Click += new System.EventHandler(this.btn_chon_Click);
+            // 
+            // dgv_doc
+            // 
+            this.dgv_doc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_doc.Location = new System.Drawing.Point(6, 49);
+            this.dgv_doc.Name = "dgv_doc";
+            this.dgv_doc.RowHeadersWidth = 51;
+            this.dgv_doc.RowTemplate.Height = 24;
+            this.dgv_doc.Size = new System.Drawing.Size(790, 370);
+            this.dgv_doc.TabIndex = 2;
             // 
             // f_ThanhTra
             // 
@@ -119,6 +178,10 @@ namespace ATBM191_10
             this.header_panel.ResumeLayout(false);
             this.header_panel.PerformLayout();
             this.tabControl1.ResumeLayout(false);
+            this.tab_thongtincanhan.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_info)).EndInit();
+            this.tab_docdulieu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_doc)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -131,5 +194,9 @@ namespace ATBM191_10
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tab_thongtincanhan;
         private System.Windows.Forms.TabPage tab_docdulieu;
+        private System.Windows.Forms.DataGridView dgv_info;
+        private System.Windows.Forms.Button btn_chon;
+        private System.Windows.Forms.ComboBox cb_chon;
+        private System.Windows.Forms.DataGridView dgv_doc;
     }
 }

@@ -55,7 +55,7 @@ namespace ATBM191_10
         {
             OracleCommand cmd = con.CreateCommand();
             cmd.CommandText = "UPDATE QLYCSYT.V_BENHNHAN_THONGTINCANHAN " +
-                               "SET HOTEN='" + txt_hoten.Text + "' , NGAYSINH=TO_DATE('" + txt_ngaysinh.Text + "','dd/mm/yyyy')" +
+                               "SET TENBN='" + txt_hoten.Text + "' , NGAYSINH=TO_DATE('" + txt_ngaysinh.Text + "','dd/mm/yyyy')" +
                                " , CMND ='" + txt_CMND.Text + "' ,SODT='" + txt_SDT.Text;
             cmd.CommandType = CommandType.Text;
             try

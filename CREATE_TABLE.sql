@@ -7,17 +7,6 @@ DO AN MON HOC AN TOAN BAO MAT DU LIEU TRONG HTTT
     19127544    Nguyen Hoan Hoai Tam
 */
 
---XOA TRUOC KHI TAO ( CHAY VOI VAI TRO SYS)
-BEGIN
-EXECUTE IMMEDIATE 'DROP USER QLYSCYT CASCADE';
-EXCEPTION WHEN OTHERS THEN NULL;
-END;
-
---TAO USER QLYCSYT ( CHAY VOI VAI TRO SYS)
-CREATE USER QLYCSYT IDENTIFIED BY 123;
-GRANT ALL PRIVILEGE TO QLYCSYT;
-
-
 -- XOA TAT CA CAC BANG TRUOC KHI TAO
 DROP TABLE HSBA CASCADE CONSTRAINTS;
 DROP TABLE HSBA_DV CASCADE CONSTRAINTS;
@@ -135,7 +124,7 @@ AS
     strSQL VARCHAR2(200);
 BEGIN
     INSERT INTO NHANVIEN ("MANV", "HOTEN", "PHAI","NGAYSINH","CMND","QUEQUAN", "SODT","CSYT", "VAITRO", "CHUYENKHOA") 
-    VALUES (manv, hoten, phai,TO_DATE(ngaysinh,'yyyy-mm-dd'),cmnd ,quequan, sodt, csyt, vaitro, chuyenkhoa);
+    VALUES (manv, hoten, phai,TO_DATE(ngaysinh,'yyyy-mm-dd'),encrypt(CMND) ,quequan, sodt, csyt, vaitro, chuyenkhoa);
     strSQL :='CREATE USER "'||manv||'" IDENTIFIED BY "'||manv||'"';
     EXECUTE IMMEDIATE (strSQL);
     strSQL :='GRANT R_NHANVIEN TO "'||manv||'"';
@@ -173,7 +162,7 @@ AS
     strSQL VARCHAR2(200);
 BEGIN
     INSERT INTO BENHNHAN ("MABN","MACSYT","TENBN","CMND","NGAYSINH","SONHA","TENDUONG","QUANHUYEN","TINHTP","TIENSUBENH","TIENSUBENHGD","DIUNGTHUOC")
-    VALUES (mabn,macsyt,tenbn,cmnd,TO_DATE(ngaysinh,'yyyy-mm-dd'),sonha,tenduong,quanhuyen,tinhtp,tiensubenh,tiensubenhgd,diungthuoc);
+    VALUES (mabn,macsyt,tenbn,encrypt(CMND),TO_DATE(ngaysinh,'yyyy-mm-dd'),sonha,tenduong,quanhuyen,tinhtp,tiensubenh,tiensubenhgd,diungthuoc);
     strSQL :='CREATE USER "'||mabn||'" IDENTIFIED BY "'||mabn||'"';
     EXECUTE IMMEDIATE (strSQL);
     strSQL :='GRANT R_BENHNHAN TO "'||mabn||'"';

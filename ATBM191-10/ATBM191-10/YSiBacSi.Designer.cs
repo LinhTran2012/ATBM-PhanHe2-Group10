@@ -394,11 +394,11 @@ namespace ATBM191_10
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(408, 16);
+            this.label11.Location = new System.Drawing.Point(455, 16);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(128, 17);
+            this.label11.Size = new System.Drawing.Size(84, 17);
             this.label11.TabIndex = 3;
-            this.label11.Text = "Nhập MaBN/CMND";
+            this.label11.Text = "Nhập MaBN";
             // 
             // btn_tim
             // 

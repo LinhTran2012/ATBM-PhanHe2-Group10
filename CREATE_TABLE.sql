@@ -52,7 +52,7 @@ CREATE TABLE BENHNHAN (
 	MABN VARCHAR2(10),
 	MACSYT VARCHAR2(10),
 	TENBN VARCHAR2(50),
-	CMND CHAR(9),
+	CMND VARCHAR2(32),
 	NGAYSINH DATE,
 	SONHA INT,
 	TENDUONG VARCHAR2(50),
@@ -78,7 +78,7 @@ CREATE TABLE NHANVIEN(
 	HOTEN VARCHAR2(50),
 	PHAI VARCHAR2(3) CHECK (PHAI IN(N'Nam',N'Nu')),
 	NGAYSINH DATE,
-	CMND CHAR(9),
+	CMND VARCHAR2(32),
 	QUEQUAN VARCHAR2(50),
 	SODT CHAR(10),
 	CSYT VARCHAR2(10),
@@ -179,4 +179,34 @@ BEGIN
     strSQL :='GRANT R_BENHNHAN TO "'||mabn||'"';
     EXECUTE IMMEDIATE (strSQL);
 END;
+
+--CAI DAT HAM MA HOA
+create or replace function encrypt(v_string in varchar2) return varchar2 is
+    encrypted_raw      RAW (2000);
+    encryption_type    PLS_INTEGER :=  SYS.DBMS_CRYPTO.ENCRYPT_DES + SYS.DBMS_CRYPTO.CHAIN_CBC + SYS.DBMS_CRYPTO.PAD_PKCS5;
+    v_key raw(128) := utl_i18n.string_to_raw( '123456789', 'AL32UTF8' );
+begin
+    encrypted_raw := DBMS_CRYPTO.ENCRYPT
+        (
+             src => UTL_I18N.STRING_TO_RAW (v_string,'AL32UTF8'),
+             typ => encryption_type,
+            key => v_key
+         );
+    return  RAWTOHEX(encrypted_raw);
+end encrypt;
+
+--CAI DAT HAM GIAI MA
+create or replace function decrypt(v_str in varchar2) return varchar2 is
+    decrypted_raw     raw(2000);
+    encryption_type    PLS_INTEGER := SYS.DBMS_CRYPTO.ENCRYPT_DES + SYS.DBMS_CRYPTO.CHAIN_CBC + SYS.DBMS_CRYPTO.PAD_PKCS5;
+    v_key raw(128) := utl_i18n.string_to_raw( '123456789', 'AL32UTF8' );
+begin
+    decrypted_raw := DBMS_CRYPTO.Decrypt
+        (
+             src => HEXTORAW(v_str),
+             typ => encryption_type,
+            key => v_key
+         );
+   return    UTL_I18N.RAW_TO_CHAR (decrypted_raw, 'AL32UTF8');
+end decrypt;
 

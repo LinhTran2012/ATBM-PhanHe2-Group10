@@ -21,6 +21,8 @@ namespace ATBM191_10
             InitializeComponent();
             this.con = connect;
             this.HienThiThongTin();
+            if (DateTime.Now.Day<5 || DateTime.Now.Day>27)
+                btn_Them.Enabled = btn_Xoa.Enabled =btn_ThemDV.Enabled =btn_XoaDV.Enabled = false;
         }
 
         private void HienThiThongTin()
@@ -215,8 +217,6 @@ namespace ATBM191_10
 
             DataGridViewRow row = this.dgv_hsba.Rows[e.RowIndex];
             txt_hsba.Text = row.Cells[0].Value.ToString();
-            btn_Them.Enabled = true;
-            btn_Xoa.Enabled = true;
         }
 
         private void dgv_hsbadv_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -226,8 +226,7 @@ namespace ATBM191_10
             DataGridViewRow row = this.dgv_hsbadv.Rows[e.RowIndex];
             txt_hsbadv.Text = row.Cells[0].Value.ToString();
             txtbx_hsbadv.Text = row.Cells[0].Value.ToString();
-            btn_ThemDV.Enabled = true;
-            btn_XoaDV.Enabled = true;
+            txt_dv.Text = row.Cells[1].Value.ToString();
         }
 
         private void btn_Them_Click(object sender, EventArgs e)
@@ -283,9 +282,9 @@ namespace ATBM191_10
 
         private void btn_ThemDV_Click(object sender, EventArgs e)
         {
-            if (txtbx_hsbadv.Text == "")
+            if (txtbx_hsbadv.Text == "" ||txtbx_dv.Text =="")
             {
-                MessageBox.Show("Mã HSBA không được trống!");
+                MessageBox.Show("Mã HSBA và DV không được trống!");
                 return;
             }
 
@@ -309,20 +308,34 @@ namespace ATBM191_10
 
         private void btn_XoaDV_Click(object sender, EventArgs e)
         {
-            OracleCommand cmd = con.CreateCommand();
-            cmd.CommandText = "DELETE FROM QLYCSYT.V_HSBA_HSBA_DV WHERE MAHSBA = '" + txt_hsbadv.Text.ToString() + "'";
-            cmd.CommandType = CommandType.Text;
-
-            try
+            if (txt_hsbadv.Text != "" &&txt_dv.Text!="" )
             {
-                int i = cmd.ExecuteNonQuery();
-                if (i == 1)
+                OracleCommand cmd = con.CreateCommand();
+                cmd.CommandText = "DELETE FROM QLYCSYT.V_HSBA_HSBA_DV WHERE MAHSBA = '" + txt_hsbadv.Text.ToString() + "' AND MADV ='"+txt_dv.Text.ToString()+"'";
+                cmd.CommandType = CommandType.Text;
+
+                try
                 {
-                    MessageBox.Show("Xóa HSBA thành công!");
+                    int i = cmd.ExecuteNonQuery();
+                    if (i == 1)
+                    {
+                        MessageBox.Show("Xóa HSBA thành công!");
+                    }
                 }
+                catch (Exception exp) { MessageBox.Show(exp.Message); }
+                this.resetAll_dv();
             }
-            catch (Exception exp) { MessageBox.Show(exp.Message); }
-            this.resetAll_dv();
+            else MessageBox.Show("Vui lòng nhập đầy đủ thông tin dịch vụ cần xóa");
+        }
+
+        private void txt_hsbadv_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtbx_hsbadv_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

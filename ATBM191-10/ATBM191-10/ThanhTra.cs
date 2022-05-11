@@ -32,7 +32,7 @@ namespace ATBM191_10
             dt.Load(dr);
             dr.Close();
 
-            lb_name.Text = dt.Rows[0][1].ToString();
+            lb_name.Text = dt.Rows[0][2].ToString();
             txt_manv.Text = dt.Rows[0][0].ToString();
             txt_hoten.Text = dt.Rows[0][1].ToString();
             cb_phai.Text = dt.Rows[0][2].ToString();

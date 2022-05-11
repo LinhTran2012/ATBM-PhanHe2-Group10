@@ -77,7 +77,7 @@ namespace ATBM191_10
             OracleCommand cmd = con.CreateCommand();
             cmd.CommandText = "SELECT * FROM QLYCSYT.BENHNHAN";
             if (strFind != null)
-                cmd.CommandText = cmd.CommandText+  " WHERE MABN='"+strFind+"' OR CMND='"+strFind+"'";
+                cmd.CommandText = cmd.CommandText+  " WHERE MABN='"+strFind+"'" ;
             cmd.CommandType = CommandType.Text;
             OracleDataReader dr = cmd.ExecuteReader();
             DataTable dt = new DataTable();

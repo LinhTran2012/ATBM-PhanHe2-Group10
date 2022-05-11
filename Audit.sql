@@ -30,8 +30,7 @@ CREATE OR REPLACE TRIGGER trg_audit_NHANVIEN
 AFTER  UPDATE OF CMND ON NHANVIEN
 FOR EACH ROW
 BEGIN
-
-    if(:NEW.MANV != SYS_CONTEXT('userenv', 'session_user')) THEN
+    if(:OLD.MANV != SYS_CONTEXT('userenv', 'session_user')) THEN
         -- insert a row into the audit table
         INSERT INTO FGA_AUDIT VALUES('NHANVIEN', 'UPDATE', USER,decrypt(:OLD.CMND),decrypt(:NEW.CMND), SYSDATE);
     END IF;
@@ -43,11 +42,13 @@ AFTER  UPDATE OF CMND ON BENHNHAN
 FOR EACH ROW
 BEGIN
 
-    if(:NEW.MABN != SYS_CONTEXT('userenv', 'session_user')) THEN
+    if(:OLD.MABN != SYS_CONTEXT('userenv', 'session_user')) THEN
         -- insert a row into the audit table
         INSERT INTO FGA_AUDIT VALUES('BENHNHAN', 'UPDATE', USER,decrypt(:OLD.CMND),decrypt(:NEW.CMND), SYSDATE);
     END IF;
 END;
 
 --select * from  FGA_AUDIT
-
+--update NHANVIEN
+--SET CMND = encrypt('123456789')
+--where MANV ='NV7';

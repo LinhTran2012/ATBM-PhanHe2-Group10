@@ -1,30 +1,30 @@
---CHAY VOI QLYCSYT
---tao bang THONGBAO
-ALTER SESSION SET CONTAINER = xepdb1;
-CREATE TABLE THONGBAO(
-    NOIDUNG NVARCHAR2(1000),
-    NGAYGIO DATE,
-    DIADIEM NVARCHAR2(100)
-);
+--CHAY VOI SYS
 --giam doc so
+alter session set "_ORACLE_SCRIPT"=true;
 CREATE USER GDS IDENTIFIED BY "123";
+GRANT DBA TO GDS;
 GRANT CONNECT TO GDS;
+GRANT CREATE SESSION TO GDS;
 GRANT SELECT ON NHANVIEN TO GDS;
 --giam doc co so y te
 CREATE USER GDCSYT IDENTIFIED BY "123";
 GRANT CONNECT TO GDCSYT;
+GRANT CREATE SESSION TO GDCSYT;
 GRANT SELECT ON NHANVIEN TO GDCSYT;
 
 CREATE USER GDCSYT2 IDENTIFIED BY "123";
 GRANT CONNECT TO GDCSYT2;
+GRANT CREATE SESSION TO GDCSYT2;
 GRANT SELECT ON NHANVIEN TO GDCSYT2;
 
 CREATE USER GDCSYT3 IDENTIFIED BY "123";
 GRANT CONNECT TO GDCSYT3;
+GRANT CREATE SESSION TO GDCSYT3;
 GRANT SELECT ON NHANVIEN TO GDCSYT3;
 --y bac si
 CREATE USER YBS IDENTIFIED BY "123";
 GRANT CONNECT TO YBS;
+GRANT CREATE SESSION TO YBS;
 GRANT SELECT ON NHANVIEN TO YBS;
 
 GRANT ALL PRIVILEGES ON NHANVIEN TO LBACSYS;
@@ -32,99 +32,81 @@ GRANT ALL PRIVILEGES ON NHANVIEN TO LBACSYS;
 --chay voi sys
 ALTER USER lbacsys IDENTIFIED BY lbacsys ACCOUNT UNLOCK;
 
-EXEC LBACSYS.CONFIGURE_OLS;
-EXEC LBACSYS.OLS_ENFORCEMENT.ENABLE_OLS;
+--EXEC LBACSYS.CONFIGURE_OLS;
+--EXEC LBACSYS.OLS_ENFORCEMENT.ENABLE_OLS;
 
+--chay voi lbacsys
 --quyen tao cac thanh phan cua table
-GRANT EXECUTE ON sa_components TO QLYCSYT WITH GRANT OPTION;
+GRANT EXECUTE ON sa_components TO QLYCSYT;
 --quyen gan label cho tai khoan
 GRANT EXECUTE ON sa_user_admin TO QLYCSYT WITH GRANT OPTION;
---quyen tao các label
+--quyen tao cÃ¡c label
 GRANT EXECUTE ON sa_label_admin TO QLYCSYT WITH GRANT OPTION;
---quyen gán policy cho các bang
+--quyen gÃ¡n policy cho cÃ¡c bang
 GRANT EXECUTE ON sa_policy_admin TO QLYCSYT WITH GRANT OPTION;
---chuyen chuoi thành so cua label
+--chuyen chuoi thÃ nh so cua label
 GRANT EXECUTE ON CHAR_TO_LABEL TO QLYCSYT WITH GRANT OPTION;
 
 GRANT LBAC_DBA TO QLYCSYT;
---gán quyen thuc thi các hàm cua sa_sysdbs (tao policy)
+GRANT EXECUTE ON sa_audit_admin  TO QLYCSYT;
+--gÃ¡n quyen thuc thi cÃ¡c hÃ m cua sa_sysdbs (tao policy)
 GRANT EXECUTE ON sa_sysdba TO QLYCSYT;
 GRANT EXECUTE ON to_lbac_data_label TO QLYCSYT;
 
-EXECUTE SA_SYSDBA.CREATE_POLICY (policy_name => 'ThongBao_policy', column_name => 'ThongBao_label');
+--chay voi sys
+ALTER SESSION SET CONTAINER = xepdb1;
+EXECUTE SA_SYSDBA.CREATE_POLICY (policy_name => 'TB_CSYT_policy', column_name => 'TB_CSYTE_label');
 
 
 --GRANT ROLE
-GRANT ThongBao_policy_DBA TO QLYCSYT;
+GRANT TB_CSYT_policy_DBA TO lbacsys;
 
---muc do vua cho giam doc csyt, thap cho y ba si, cao cho giam doc so
-EXECUTE SA_COMPONENTS.CREATE_LEVEL('ThongBao_policy',60,'C','Cao');  
-EXECUTE SA_COMPONENTS.CREATE_LEVEL('ThongBao_policy',40,'V','Vua');
-EXECUTE SA_COMPONENTS.CREATE_LEVEL('ThongBao_policy',20,'T','Thap');
+--muc do vua cho giam doc csyt, thap cho y bac si, cao cho giam doc so
+EXECUTE SA_COMPONENTS.CREATE_LEVEL('TB_CSYT_policy',60,'GDS','Giam Doc So');  
+EXECUTE SA_COMPONENTS.CREATE_LEVEL('TB_CSYT_policy',40,'GDCSYT','Giam Doc CSYT');
+EXECUTE SA_COMPONENTS.CREATE_LEVEL('TB_CSYT_policy',20,'YBS','Y Bac Si');
 
-EXECUTE SA_COMPONENTS.CREATE_COMPARTMENT('ThongBao_policy',100,'DT01','Dieu tri ngoai tru');
-EXECUTE SA_COMPONENTS.CREATE_COMPARTMENT('ThongBao_policy',120,'DT02','Dieu tri noi tru');
-EXECUTE SA_COMPONENTS.CREATE_COMPARTMENT('ThongBao_policy',130,'DT03','Dieu tri chuyen sau');
+EXECUTE SA_COMPONENTS.CREATE_COMPARTMENT('TB_CSYT_policy',130,'DTNgT','Dieu tri ngoai tru');
+EXECUTE SA_COMPONENTS.CREATE_COMPARTMENT('TB_CSYT_policy',120,'DTNT','Dieu tri noi tru');
+EXECUTE SA_COMPONENTS.CREATE_COMPARTMENT('TB_CSYT_policy',100,'DTCS','Dieu tri chuyen sau');
 
-EXECUTE SA_COMPONENTS.CREATE_GROUP('ThongBao_policy',1,'V01','Trung tam');
-EXECUTE SA_COMPONENTS.CREATE_GROUP('ThongBao_policy',2,'V02','Can trung tam');
-EXECUTE SA_COMPONENTS.CREATE_GROUP('ThongBao_policy',3,'V03','Ngoai thanh');
+EXECUTE SA_COMPONENTS.CREATE_GROUP('TB_CSYT_policy',1,'TT','Trung tam');
+EXECUTE SA_COMPONENTS.CREATE_GROUP('TB_CSYT_policy',2,'CTT','Can trung tam');
+EXECUTE SA_COMPONENTS.CREATE_GROUP('TB_CSYT_policy',3,'NT','Ngoai thanh');
 
-BEGIN
- SA_USER_ADMIN.SET_LEVELS (
-  policy_name   => 'ThongBao_policy',
-  user_name     => 'QLYCSYT', 
-  max_level     => 'C',
-  min_level     => 'T',
-  def_level     => 'V',
-  row_level     => 'V');
-END;
 
-BEGIN
- SA_USER_ADMIN.SET_USER_PRIVS(
-  policy_name   => 'ThongBao_policy',
-  user_name     => 'QLYCSYT', 
-  privileges    => 'FULL, PROFILE_ACCESS');
-END;
+EXEC SA_USER_ADMIN.SET_USER_PRIVS('TB_CSYT_policy','sys','FULL,PROFILE_ACCESS');
+
+CREATE TABLE THONGBAO(
+    NOIDUNG NVARCHAR2(1000),
+    NGAYGIO DATE,
+    DIADIEM NVARCHAR2(100)
+);
 
 --Giam doc so
-EXECUTE SA_LABEL_ADMIN.CREATE_LABEL(policy_name => 'THONGBAO_POLICY', label_tag => 1, label_value => 'C');
-    
-    --Giam doc csyt
-EXECUTE SA_LABEL_ADMIN.CREATE_LABEL(policy_name => 'ThongBao_policy', label_tag => 200, label_value => 'V:DT01:V02');
-EXECUTE SA_LABEL_ADMIN.CREATE_LABEL(policy_name => 'ThongBao_policy', label_tag => 210, label_value => 'V:DT02:V03');
-EXECUTE SA_LABEL_ADMIN.CREATE_LABEL(policy_name => 'ThongBao_policy', label_tag => 220, label_value => 'V:DT03:V01');
-    
-    --Y bac si
-EXECUTE SA_LABEL_ADMIN.CREATE_LABEL(policy_name => 'ThongBao_policy', label_tag => 100, label_value => 'T:DT02:V01');
-
-show errors
+EXECUTE SA_LABEL_ADMIN.CREATE_LABEL(policy_name => 'TB_CSYT_policy', label_tag => 1, label_value => 'GDS');
+--    
+--    --Giam doc csyt
+EXECUTE SA_LABEL_ADMIN.CREATE_LABEL(policy_name => 'TB_CSYT_policy', label_tag => 200, label_value => 'GDCSYT:DTNgT:TT');
+EXECUTE SA_LABEL_ADMIN.CREATE_LABEL(policy_name => 'TB_CSYT_policy', label_tag => 210, label_value => 'GDCSYT:DTNT:NT');
+EXECUTE SA_LABEL_ADMIN.CREATE_LABEL(policy_name => 'TB_CSYT_policy', label_tag => 220, label_value => 'GDCSYT:DTCS:CTT');
+--    
+--    --Y bac si
+EXECUTE SA_LABEL_ADMIN.CREATE_LABEL(policy_name => 'TB_CSYT_policy', label_tag => 100, label_value => 'YBS:DTNT:TT');
 
 --Ap dung policy vao bang
-EXECUTE SA_POLICY_ADMIN.APPLY_TABLE_POLICY(policy_name   => 'ThongBao_policy', schema_name   => 'QLYCSYT', table_name    => 'THONGBAO', table_options => 'NO_CONTROL');
+EXECUTE SA_POLICY_ADMIN.APPLY_TABLE_POLICY(policy_name   => 'TB_CSYT_policy', schema_name   => 'QLYCSYT', table_name    => 'THONGBAO', table_options => 'NO_CONTROL');
 
 --ap dung 1 lan nua
 BEGIN
-  SA_POLICY_ADMIN.REMOVE_TABLE_POLICY('ThongBao_policy','QLYCSYT','THONGBAO');
+  SA_POLICY_ADMIN.REMOVE_TABLE_POLICY('TB_CSYT_policy','QLYCSYT','THONGBAO');
   SA_POLICY_ADMIN.APPLY_TABLE_POLICY (
-    policy_name => 'ThongBao_policy',
+    policy_name => 'TB_CSYT_policy',
     schema_name => 'QLYCSYT',
     table_name  => 'THONGBAO',
     table_options => 'READ_CONTROL,WRITE_CONTROL');
 END;
 
-show errors;
-
-EXECUTE SA_USER_ADMIN.SET_USER_LABELS('ThongBao_policy', 'QLYCSYT', 'C'); 
-
---gan nhan 
-BEGIN
-     SA_USER_ADMIN.SET_USER_LABELS('ThongBao_policy', 'GDS', 'C:DT03:V01'); 
-     SA_USER_ADMIN.SET_USER_LABELS('ThongBao_policy', 'GDCSYT', 'V:DT01:V02'); 
-     SA_USER_ADMIN.SET_USER_LABELS('ThongBao_policy', 'GDCSYT2', 'V:DT02:V03'); 
-     SA_USER_ADMIN.SET_USER_LABELS('ThongBao_policy', 'GDCSYT3', 'V:DT03:V01');
-     SA_USER_ADMIN.SET_USER_LABELS('ThongBao_policy', 'YBS', 'T:DT02:V01');
-END;
 
 GRANT SELECT, INSERT, UPDATE ON THONGBAO TO GDS;
 GRANT SELECT, INSERT, UPDATE ON THONGBAO TO GDCSYT;
@@ -138,5 +120,18 @@ GRANT EXECUTE ON CHAR_TO_LABEL TO GDCSYT2;
 GRANT EXECUTE ON CHAR_TO_LABEL TO GDCSYT3;
 GRANT EXECUTE ON CHAR_TO_LABEL TO YBS;
 
+INSERT INTO THONGBAO (NOIDUNG, NGAYGIO, DIADIEM)
+VALUES ('NOI DUNG 1', TO_TIMESTAMP('2022-01-01 07:30:00', 'YYYY-MM-DD HH24:MI:SS'), 'DIA DIEM 1');
+INSERT INTO THONGBAO (NOIDUNG, NGAYGIO, DIADIEM)
+VALUES ('NOI DUNG 2', TO_TIMESTAMP('2022-02-02 07:30:00', 'YYYY-MM-DD HH24:MI:SS'), 'DIA DIEM 2');
 
-    
+BEGIN
+  SA_POLICY_ADMIN.REMOVE_TABLE_POLICY('TB_CSYT_policy','QLYCSYT','THONGBAO');
+  SA_POLICY_ADMIN.APPLY_TABLE_POLICY (
+    policy_name => 'TB_CSYT_policy',
+    schema_name => 'QLYCSYT',
+    table_name  => 'THONGBAO',
+    table_options => 'READ_CONTROL,WRITE_CONTROL');
+END;
+
+select * from THONGBAO;

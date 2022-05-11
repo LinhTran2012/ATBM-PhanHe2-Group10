@@ -142,5 +142,3 @@ BEGIN
 END;
 
 select * from THONGBAO;
-
-select * from USER_ROLE_PRIVS where USERNAME= USER;
